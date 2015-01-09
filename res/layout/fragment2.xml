@@ -8,10 +8,11 @@
     <TextView
             android:id="@+id/lblFragment2"
             style="@style/largetext"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/str_fragment2_label"
-            android:gravity="bottom|right"
+            android:layout_gravity="bottom|right"
+            android:background="@android:color/holo_blue_dark"
             />
 
 </FrameLayout>
