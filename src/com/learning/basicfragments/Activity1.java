@@ -1,9 +1,15 @@
 package com.learning.basicfragments;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.support.v4.content.*;
+import android.util.*;
+import android.widget.*;
 
 public class Activity1 extends Activity {
+
+private BroadcastReceiver broadcastReceiver;
 
 /** Called when the activity is first created. */
 @Override
@@ -11,6 +17,50 @@ public void onCreate(Bundle savedInstanceState)
 {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity1);
-}
+
+  // bind to local event 1
+  broadcastReceiver = new BroadcastReceiver() {
+    public void onReceive(Context context, Intent intent) {
+      _someBtnPressed(intent);
+    }
+  };
+  LocalBroadcastManager.getInstance(this).registerReceiver(
+      broadcastReceiver, new IntentFilter(String.valueOf(R.id.local_event_id1)));
+  LocalBroadcastManager.getInstance(this).registerReceiver(
+      broadcastReceiver, new IntentFilter(String.valueOf(R.id.local_event_id2)));
 
 }
+
+@Override
+protected void onDestroy() {
+  super.onDestroy();
+  // unbind from local events
+  LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+}
+
+private void _someBtnPressed(Intent intent) {
+  Toast.makeText(this, "received local event", Toast.LENGTH_SHORT).show();
+  if (intent.getAction().equals(String.valueOf(R.id.local_event_id1))) {
+    Log.d("app", "responding to local event id1");
+    _btn1Pressed();
+  }
+  else if (intent.getAction().equals(String.valueOf(R.id.local_event_id2))) {
+    Log.d("app", "responding to local event id2");
+    _btn2Pressed();
+  }
+  else {
+
+  }
+}// end _someBtnPressed
+
+// todo perform fragment xact when btn1 is pressed
+private void _btn2Pressed() {
+
+}
+
+// todo perform fragment xact when btn2 is pressed
+private void _btn1Pressed() {
+
+}
+
+}//end class

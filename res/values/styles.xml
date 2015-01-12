@@ -7,4 +7,8 @@
         <item name="android:padding">@dimen/padding_default</item>
     </style>
 
+    <style name="padding">
+        <item name="android:padding">@dimen/padding_default</item>
+    </style>
+
 </resources>

@@ -3,4 +3,6 @@
     <string name="app_name">app_basicfragments</string>
     <string name="str_fragment1_label">Fragment1</string>
     <string name="str_fragment2_label">Fragment2</string>
+    <string name="lbl_btn1">Btn1</string>
+    <string name="lbl_btn2">Btn2</string>
 </resources>
