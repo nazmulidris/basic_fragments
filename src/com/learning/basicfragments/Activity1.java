@@ -53,22 +53,22 @@ private void _someBtnPressed(Intent intent) {
 }// end _someBtnPressed
 
 private void _btn1Pressed() {
-  FragmentTransaction xact = getFragmentManager().beginTransaction();
-  Fragment frag = new Fragment2();
-  xact.replace(R.id.fragment1, frag);
-  xact.addToBackStack(null);
-  xact.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-  xact.commit();
+  getFragmentManager()
+      .beginTransaction()
+      .replace(R.id.fragment1, new Fragment2())
+      .addToBackStack(null)
+      .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+      .commit();
   Toast.makeText(this, "close anim", Toast.LENGTH_SHORT).show();
 }
 
 private void _btn2Pressed() {
-  FragmentTransaction xact = getFragmentManager().beginTransaction();
-  Fragment frag = new Fragment1();
-  xact.replace(R.id.fragment2, frag);
-  xact.addToBackStack(null);
-  xact.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-  xact.commit();
+  getFragmentManager()
+      .beginTransaction()
+      .replace(R.id.fragment2, new Fragment1())
+      .addToBackStack(null)
+      .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+      .commit();
   Toast.makeText(this, "open anim", Toast.LENGTH_SHORT).show();
 }
 
