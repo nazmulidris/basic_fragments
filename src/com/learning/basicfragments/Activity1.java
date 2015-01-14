@@ -39,7 +39,6 @@ protected void onDestroy() {
 }
 
 private void _someBtnPressed(Intent intent) {
-  Toast.makeText(this, "received local event", Toast.LENGTH_SHORT).show();
   if (intent.getAction().equals(String.valueOf(R.id.local_event_id1))) {
     Log.d("app", "responding to local event id1");
     _btn1Pressed();
@@ -53,14 +52,26 @@ private void _someBtnPressed(Intent intent) {
   }
 }// end _someBtnPressed
 
-// todo perform fragment xact when btn1 is pressed
-private void _btn2Pressed() {
-
-}
-
 // todo perform fragment xact when btn2 is pressed
 private void _btn1Pressed() {
+  FragmentTransaction xact = getFragmentManager().beginTransaction();
+  Fragment frag = new Fragment2();
+  xact.replace(R.id.fragment1, frag);
+  xact.addToBackStack(null);
+  xact.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+  xact.commit();
+  Toast.makeText(this, "close anim", Toast.LENGTH_SHORT).show();
+}
 
+// todo perform fragment xact when btn1 is pressed
+private void _btn2Pressed() {
+  FragmentTransaction xact = getFragmentManager().beginTransaction();
+  Fragment frag = new Fragment1();
+  xact.replace(R.id.fragment2, frag);
+  xact.addToBackStack(null);
+  xact.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+  xact.commit();
+  Toast.makeText(this, "open anim", Toast.LENGTH_SHORT).show();
 }
 
 }//end class
