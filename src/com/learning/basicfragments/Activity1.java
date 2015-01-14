@@ -52,7 +52,6 @@ private void _someBtnPressed(Intent intent) {
   }
 }// end _someBtnPressed
 
-// todo perform fragment xact when btn2 is pressed
 private void _btn1Pressed() {
   FragmentTransaction xact = getFragmentManager().beginTransaction();
   Fragment frag = new Fragment2();
@@ -63,7 +62,6 @@ private void _btn1Pressed() {
   Toast.makeText(this, "close anim", Toast.LENGTH_SHORT).show();
 }
 
-// todo perform fragment xact when btn1 is pressed
 private void _btn2Pressed() {
   FragmentTransaction xact = getFragmentManager().beginTransaction();
   Fragment frag = new Fragment1();
