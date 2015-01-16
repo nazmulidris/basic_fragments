@@ -1,16 +1,12 @@
 package com.learning.basicfragments;
 
 import android.app.*;
-import android.content.*;
 import android.os.*;
-import android.support.v4.content.*;
 import android.util.*;
 import zen.base.*;
 import zen.core.localevent.*;
 
 public class Activity1 extends SimpleActivity {
-
-private BroadcastReceiver broadcastReceiver;
 
 /** Called when the activity is first created. */
 @Override
@@ -46,14 +42,6 @@ public void onCreate(Bundle savedInstanceState)
       _someBtnPressed(R.id.evt_local2);
     }
   });
-
-}
-
-@Override
-protected void onDestroy() {
-  super.onDestroy();
-  // unbind from local events
-  LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
 }
 
 private void _someBtnPressed(int id) {
