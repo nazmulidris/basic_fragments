@@ -5,9 +5,10 @@ import android.content.*;
 import android.os.*;
 import android.support.v4.content.*;
 import android.util.*;
-import android.widget.*;
+import zen.base.*;
+import zen.core.localevent.*;
 
-public class Activity1 extends Activity {
+public class Activity1 extends SimpleActivity {
 
 private BroadcastReceiver broadcastReceiver;
 
@@ -18,16 +19,33 @@ public void onCreate(Bundle savedInstanceState)
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity1);
 
-  // bind to local event 1
-  broadcastReceiver = new BroadcastReceiver() {
-    public void onReceive(Context context, Intent intent) {
-      _someBtnPressed(intent);
+  getLifecycleHelper().addResource(new LocalEventsListener() {
+    public int getLocalEventId() {
+      return R.id.evt_local1;
     }
-  };
-  LocalBroadcastManager.getInstance(this).registerReceiver(
-      broadcastReceiver, new IntentFilter(String.valueOf(R.id.local_event_id1)));
-  LocalBroadcastManager.getInstance(this).registerReceiver(
-      broadcastReceiver, new IntentFilter(String.valueOf(R.id.local_event_id2)));
+
+    public String getName() {
+      return "local event 1";
+    }
+
+    public void onReceive(String stringPayload, Object objectPayload, Bundle extras) {
+      _someBtnPressed(R.id.evt_local1);
+    }
+  });
+
+  getLifecycleHelper().addResource(new LocalEventsListener() {
+    public int getLocalEventId() {
+      return R.id.evt_local2;
+    }
+
+    public String getName() {
+      return "local event 2";
+    }
+
+    public void onReceive(String stringPayload, Object objectPayload, Bundle extras) {
+      _someBtnPressed(R.id.evt_local2);
+    }
+  });
 
 }
 
@@ -38,17 +56,14 @@ protected void onDestroy() {
   LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
 }
 
-private void _someBtnPressed(Intent intent) {
-  if (intent.getAction().equals(String.valueOf(R.id.local_event_id1))) {
+private void _someBtnPressed(int id) {
+  if (id == R.id.evt_local1) {
     Log.d("app", "responding to local event id1");
     _btn1Pressed();
   }
-  else if (intent.getAction().equals(String.valueOf(R.id.local_event_id2))) {
+  else if (id == R.id.evt_local2) {
     Log.d("app", "responding to local event id2");
     _btn2Pressed();
-  }
-  else {
-
   }
 }// end _someBtnPressed
 
@@ -59,7 +74,7 @@ private void _btn1Pressed() {
       .addToBackStack(null)
       .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
       .commit();
-  Toast.makeText(this, "close anim", Toast.LENGTH_SHORT).show();
+  showToastShort("close anim");
 }
 
 private void _btn2Pressed() {
@@ -69,7 +84,7 @@ private void _btn2Pressed() {
       .addToBackStack(null)
       .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
       .commit();
-  Toast.makeText(this, "open anim", Toast.LENGTH_SHORT).show();
+  showToastShort("open anim");
 }
 
 }//end class

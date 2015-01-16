@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/basicfragments.iml" filepath="$PROJECT_DIR$/basicfragments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../zenframework/zenframework.iml" filepath="$PROJECT_DIR$/../zenframework/zenframework.iml" />
     </modules>
   </component>
 </project>

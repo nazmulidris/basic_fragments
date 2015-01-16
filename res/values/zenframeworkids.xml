@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- LocalEvents -->
+    <item type="id" name="evt_local1" />
+    <item type="id" name="evt_local2" />
+
+</resources>
