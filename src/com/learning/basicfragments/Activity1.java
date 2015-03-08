@@ -19,11 +19,9 @@ public void onCreate(Bundle savedInstanceState)
     public int getLocalEventId() {
       return R.id.evt_local1;
     }
-
     public String getName() {
       return "local event 1";
     }
-
     public void onReceive(String stringPayload, Object objectPayload, Bundle extras) {
       _someBtnPressed(R.id.evt_local1);
     }
@@ -33,11 +31,9 @@ public void onCreate(Bundle savedInstanceState)
     public int getLocalEventId() {
       return R.id.evt_local2;
     }
-
     public String getName() {
       return "local event 2";
     }
-
     public void onReceive(String stringPayload, Object objectPayload, Bundle extras) {
       _someBtnPressed(R.id.evt_local2);
     }
